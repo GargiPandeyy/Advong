@@ -13,3 +13,12 @@ const gameState = {
     hintUsedOnCurrentBlank: false,
     unlockedModes: null
 };
+const settings = {
+    soundEnabled: true,
+    musicEnabled: true
+};
+
+function initGame() {
+    loadProgress();
+    loadSettings();
+}
