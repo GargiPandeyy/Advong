@@ -106,7 +106,13 @@ function renderChoices(blank) {
     choicesDiv.className = 'choices-container';
     choicesDiv.id = 'choices-container';
     
-    blank.options.forEach((option, index) => {
+    const shuffledOptions = [...blank.options];
+    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+    }
+    
+    shuffledOptions.forEach((option, index) => {
         const choiceBtn = document.createElement('button');
         choiceBtn.className = 'choice-btn';
         choiceBtn.textContent = option;
