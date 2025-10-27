@@ -150,10 +150,8 @@ function handleChoiceClick(event) {
         });
         
         setTimeout(() => {
-            allChoices.forEach(btn => {
-                btn.classList.remove('incorrect', 'correct');
-                btn.disabled = false;
-            });
+            resetCurrentSong();
+            renderGameScreen();
         }, 1500);
     }
 }

@@ -9,6 +9,7 @@ const gameState = {
     hintsUsed: 0,
     skipsUsed: 0,
     correctAnswers: 0,
+    wrongAnswers: 0,
     totalBlanks: 0,
     hintUsedOnCurrentBlank: false,
     unlockedModes: null
@@ -85,6 +86,7 @@ function startGame(mode) {
     gameState.hintsUsed = 0;
     gameState.skipsUsed = 0;
     gameState.correctAnswers = 0;
+    gameState.wrongAnswers = 0;
     gameState.hintUsedOnCurrentBlank = false;
     
     gameState.totalBlanks = gameState.songs.reduce((total, song) => {
@@ -101,6 +103,11 @@ function loadSong(songIndex) {
     gameState.currentSongIndex = songIndex;
     gameState.currentBlankIndex = 0;
     gameState.hintUsedOnCurrentBlank = false;
+}
+
+function resetCurrentSong() {
+    console.log('Resetting current song due to wrong answer');
+    loadSong(gameState.currentSongIndex);
 }
 
 function checkAnswer(selectedAnswer) {
@@ -138,7 +145,8 @@ function checkAnswer(selectedAnswer) {
         
         return true;
     } else {
-        console.log('Wrong answer');
+        console.log('Wrong answer - will need to try again');
+        gameState.wrongAnswers++;
         return false;
     }
 }
@@ -199,9 +207,12 @@ function skipSong() {
 function endGame() {
     const modeUnlocked = checkModeUnlock();
     
+    const totalAttempts = gameState.correctAnswers + gameState.wrongAnswers;
+    const accuracy = totalAttempts > 0 ? Math.round((gameState.correctAnswers / totalAttempts) * 100) : 0;
+    
     const finalStats = {
         score: gameState.score,
-        accuracy: Math.round((gameState.correctAnswers / gameState.totalBlanks) * 100),
+        accuracy: accuracy,
         hintsUsed: gameState.hintsUsed,
         skipsUsed: gameState.skipsUsed,
         modeUnlocked: modeUnlocked
