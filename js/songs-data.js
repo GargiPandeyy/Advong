@@ -413,8 +413,7 @@ const SONGS_DATABASE = [
 ];
 
 function getSongsForMode(mode) {
-    // This function is well-written and requires no changes.
-    // It will work perfectly with the expanded and corrected database.
+   
     const songCount = mode;
     const selectedSongs = [];
     
@@ -480,7 +479,7 @@ function getSongsForModeExcluding(mode, excludeIds) {
         hardCount = 4;
     }
     
-    // Filter out already played songs
+    
     const easySongs = SONGS_DATABASE.filter(song => song.difficulty === 'easy' && !excludeIds.includes(song.id));
     const mediumSongs = SONGS_DATABASE.filter(song => song.difficulty === 'medium' && !excludeIds.includes(song.id));
     const hardSongs = SONGS_DATABASE.filter(song => song.difficulty === 'hard' && !excludeIds.includes(song.id));

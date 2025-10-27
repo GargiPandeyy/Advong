@@ -59,7 +59,6 @@ body {
     animation-direction: reverse;
 }
 
-/* Add even more musical notes */
 .background-animation {
     background: 
         repeating-linear-gradient(
@@ -71,7 +70,6 @@ body {
         );
 }
 
-/* Add more pink gradient overlays */
 body::before {
     content: '';
     position: fixed;
@@ -87,7 +85,6 @@ body::before {
     z-index: 0;
 }
 
-/* Additional floating notes */
 body::after {
     content: '♪♫♪♫♪♫';
     position: fixed;
@@ -100,6 +97,46 @@ body::after {
     pointer-events: none;
     z-index: 0;
     white-space: nowrap;
+}
+
+#intro-screen::before,
+#main-menu::before,
+#game-screen::before,
+#victory-screen::before {
+    content: '♪';
+    position: fixed;
+    font-size: 35px;
+    color: rgba(255, 105, 180, 0.2);
+    animation: float 25s infinite linear;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#intro-screen::before {
+    top: 20%;
+    left: 15%;
+    animation-delay: 2s;
+}
+
+#main-menu::before {
+    content: '♫';
+    top: 60%;
+    right: 20%;
+    animation-delay: 5s;
+}
+
+#game-screen::before {
+    content: '♪';
+    top: 40%;
+    right: 15%;
+    animation-delay: 8s;
+}
+
+#victory-screen::before {
+    content: '♫';
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 11s;
 }
 
 .game-container {
@@ -153,7 +190,6 @@ body::after {
     z-index: 1;
 }
 
-/* Pink glow effect for containers */
 .game-container::before {
     content: '';
     position: absolute;
@@ -909,4 +945,61 @@ html {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.intro-content {
+    text-align: center;
+}
+
+.intro-title {
+    font-size: 3rem;
+    color: var(--hot-pink);
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px var(--hot-pink);
+}
+
+.story-text {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--light-pink);
+    min-height: 150px;
+}
+
+.story-text p {
+    margin-bottom: 20px;
+}
+
+.cursor {
+    display: inline-block;
+    color: var(--gold);
+    animation: blink 0.8s infinite;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+#continue-btn {
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeInBtn 0.5s ease-in forwards;
+}
+
+@keyframes fadeInBtn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

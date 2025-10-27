@@ -376,3 +376,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function initIntroScreen() {
+    const storyText = "Lyrocix, the legendary guardian of music, faces the greatest crisis yet: the Songiverse is crumbling! The lyrics of beloved songs are disappearing, one by one. As the last hope, you must fill in the missing words before the songs fade away forever. Armed with hints and the ability to skip a song, journey through different modes and save the musical universe. Remember, one wrong answer means starting over, so choose wisely. The Songiverse depends on you!";
+    
+    const storyDisplay = document.getElementById('story-display');
+    const continueBtn = document.getElementById('continue-btn');
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < storyText.length) {
+            storyDisplay.textContent = storyText.substring(0, i + 1);
+            i++;
+            setTimeout(typeWriter, 20);
+        } else {
+            setTimeout(() => {
+                continueBtn.style.display = 'block';
+            }, 500);
+        }
+    }
+    
+    typeWriter();
+    
+    continueBtn.addEventListener('click', () => {
+        showScreen('main-menu');
+    });
+}
+
+if (document.getElementById('intro-screen') && document.getElementById('intro-screen').classList.contains('active')) {
+    initIntroScreen();
+}
