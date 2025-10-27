@@ -54,11 +54,26 @@ function loadSettings() {
 function saveSettings() {
     localStorage.setItem('advong_settings', JSON.stringify(settings));
 }
+let playedSongsTracker = []; // Track which songs have been played in this session
+
 function startGame(mode) {
     console.log(`Starting game with mode: ${mode}`);
     
     gameState.currentMode = mode;
-    gameState.songs = getSongsForMode(mode);
+    
+    // Get songs and ensure no duplicates across modes
+    if (playedSongsTracker.length === 0) {
+        // First mode - get fresh songs
+        gameState.songs = getSongsForMode(mode);
+        playedSongsTracker = gameState.songs.map(s => s.id);
+        console.log('First mode, fresh songs selected');
+    } else {
+        // Subsequent modes - exclude already played songs
+        gameState.songs = getSongsForModeExcluding(mode, playedSongsTracker);
+        const newSongIds = gameState.songs.map(s => s.id);
+        playedSongsTracker = playedSongsTracker.concat(newSongIds);
+        console.log('Excluding already played songs:', playedSongsTracker);
+    }
     
     console.log(`Selected ${gameState.songs.length} songs:`, gameState.songs.map(s => s.title));
     

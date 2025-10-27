@@ -459,3 +459,56 @@ function getSongsForMode(mode) {
     
     return shuffleArray(selectedSongs);
 }
+
+function getSongsForModeExcluding(mode, excludeIds) {
+    const songCount = mode;
+    const selectedSongs = [];
+    
+    let easyCount, mediumCount, hardCount;
+    
+    if (mode === 5) {
+        easyCount = 2;
+        mediumCount = 2;
+        hardCount = 1;
+    } else if (mode === 7) {
+        easyCount = 2;
+        mediumCount = 3;
+        hardCount = 2;
+    } else if (mode === 9) {
+        easyCount = 2;
+        mediumCount = 3;
+        hardCount = 4;
+    }
+    
+    // Filter out already played songs
+    const easySongs = SONGS_DATABASE.filter(song => song.difficulty === 'easy' && !excludeIds.includes(song.id));
+    const mediumSongs = SONGS_DATABASE.filter(song => song.difficulty === 'medium' && !excludeIds.includes(song.id));
+    const hardSongs = SONGS_DATABASE.filter(song => song.difficulty === 'hard' && !excludeIds.includes(song.id));
+    
+    console.log(`Available songs: ${easySongs.length} easy, ${mediumSongs.length} medium, ${hardSongs.length} hard (excluding ${excludeIds.length} played)`);
+    
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+    
+    const availableEasy = Math.min(easyCount, easySongs.length);
+    const availableMedium = Math.min(mediumCount, mediumSongs.length);
+    const availableHard = Math.min(hardCount, hardSongs.length);
+    
+    selectedSongs.push(...shuffleArray(easySongs).slice(0, availableEasy));
+    selectedSongs.push(...shuffleArray(mediumSongs).slice(0, availableMedium));
+    selectedSongs.push(...shuffleArray(hardSongs).slice(0, availableHard));
+    
+    console.log(`Selected ${selectedSongs.length} unique songs (${availableEasy} easy, ${availableMedium} medium, ${availableHard} hard)`);
+    
+    return shuffleArray(selectedSongs);
+}
+
+function getTotalSongs() {
+    return SONGS_DATABASE.length;
+}
