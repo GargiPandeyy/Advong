@@ -10,6 +10,10 @@ function showScreen(screenId) {
 function renderMainMenu() {
     const modeBtns = document.querySelectorAll('.mode-btn');
     
+    if (gameState.unlockedModes === null) {
+        return;
+    }
+    
     modeBtns.forEach(btn => {
         const mode = parseInt(btn.dataset.mode);
         let isUnlocked = false;
@@ -26,6 +30,10 @@ function renderMainMenu() {
         
         if (isUnlocked) {
             btn.classList.remove('locked');
+            const lockIcon = btn.querySelector('.lock-icon');
+            if (lockIcon) {
+                lockIcon.style.display = 'none';
+            }
         } else {
             btn.classList.add('locked');
         }
@@ -400,6 +408,7 @@ function initIntroScreen() {
     
     continueBtn.addEventListener('click', () => {
         showScreen('main-menu');
+        renderMainMenu();
     });
 }
 
