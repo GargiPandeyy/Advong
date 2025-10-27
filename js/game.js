@@ -120,6 +120,7 @@ function nextSong() {
         endGame();
     } else {
         loadSong(gameState.currentSongIndex);
+        renderGameScreen();
     }
 }
 function useHint() {
