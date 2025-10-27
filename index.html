@@ -77,5 +77,96 @@
             <button id="quit-btn" class="secondary-btn quit-btn">Exit to Menu</button>
         </div>
     </div>
+
+    <div id="victory-screen" class="screen">
+        <div class="game-container">
+            <div class="victory-content">
+                <h1 class="victory-title">🎉 Songiverse Saved! 🎉</h1>
+                <p class="victory-message">You did it, Lyrocix!</p>
+                
+                <div class="stats-container">
+                    <h2>Your Stats</h2>
+                    <div class="stat-item">
+                        <span class="stat-label">Final Score:</span>
+                        <span id="final-score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Accuracy:</span>
+                        <span id="accuracy" class="stat-value">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Hints Used:</span>
+                        <span id="hints-used" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Skips Used:</span>
+                        <span id="skips-used" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <div id="unlock-message" class="unlock-message hidden">
+                    <p>🔓 New Mode Unlocked!</p>
+                </div>
+
+                <div class="victory-actions">
+                    <button id="play-again-btn" class="primary-btn">Play Again</button>
+                    <button id="back-to-menu-btn" class="secondary-btn">Main Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="how-to-play-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>How to Play Advong</h2>
+            <div class="instructions">
+                <p>🎵 <strong>Your Mission:</strong> Save the Songiverse by completing song lyrics!</p>
+                <p>🎮 <strong>Gameplay:</strong></p>
+                <ul>
+                    <li>Fill in the missing words from popular songs</li>
+                    <li>Choose from 4 options for each blank</li>
+                    <li>Complete all songs in a mode to win</li>
+                    <li>Use keyboard: 1-4 for choices, H for hint, S for skip</li>
+                </ul>
+                <p>💡 <strong>Hints:</strong> You get 2 hints total per game</p>
+                <ul>
+                    <li>First hint: Shows the first letter</li>
+                    <li>Second hint: Removes one wrong answer</li>
+                </ul>
+                <p>⏭️ <strong>Skips:</strong> You get 1 skip per mode to pass a tough song</p>
+                <p>🏆 <strong>Scoring:</strong></p>
+                <ul>
+                    <li>Correct answer: +100 points</li>
+                    <li>No hints bonus: +50 points</li>
+                    <li>Using hint: -25 points</li>
+                    <li>Using skip: -100 points</li>
+                </ul>
+                <p>🔓 <strong>Progression:</strong> Beat each mode to unlock the next!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Settings</h2>
+            <div class="settings-options">
+                <div class="setting-item">
+                    <label for="sound-toggle">Sound Effects:</label>
+                    <input type="checkbox" id="sound-toggle" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="music-toggle">Background Music:</label>
+                    <input type="checkbox" id="music-toggle" checked>
+                </div>
+                <button id="reset-progress-btn" class="danger-btn">Reset All Progress</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/songs-data.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
 </body>
 </html>
