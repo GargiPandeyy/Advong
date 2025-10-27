@@ -74,11 +74,11 @@ function renderLyrics() {
             const blankIndex = blanks.indexOf(line);
             
             if (blankIndex < gameState.currentBlankIndex) {
-                lineDiv.innerHTML = `<span class="lyric-blank filled correct">${line.correctAnswer}</span>`;
+                lineDiv.innerHTML = `${line.text} <span class="lyric-blank filled correct">${line.correctAnswer}</span>`;
             } else if (blankIndex === gameState.currentBlankIndex) {
-                lineDiv.innerHTML = `<span class="lyric-blank">___</span>`;
+                lineDiv.innerHTML = `${line.text} <span class="lyric-blank">___</span>`;
             } else {
-                lineDiv.innerHTML = `<span class="lyric-blank">___</span>`;
+                lineDiv.innerHTML = `${line.text} <span class="lyric-blank">___</span>`;
             }
         } else {
             lineDiv.textContent = line.text;
