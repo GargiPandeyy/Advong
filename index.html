@@ -42,3 +42,40 @@
             </div>
         </div>
     </div>
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="score-display">
+                    <span class="score-label">Score:</span>
+                    <span id="score-value">0</span>
+                </div>
+                <div class="progress-display">
+                    <span id="progress-text">Song 1 of 5</span>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="song-display">
+                <h2 id="song-title" class="song-title">Song Title</h2>
+                <p id="song-artist" class="song-artist">Artist Name</p>
+                
+                <div id="lyrics-container" class="lyrics-container">
+                </div>
+            </div>
+
+            <div class="game-actions">
+                <button id="hint-btn" class="action-btn hint-btn">
+                    💡 Hint (<span id="hints-remaining">2</span>)
+                </button>
+                <button id="skip-btn" class="action-btn skip-btn">
+                    ⏭️ Skip (<span id="skips-remaining">1</span>)
+                </button>
+            </div>
+
+            <button id="quit-btn" class="secondary-btn quit-btn">Exit to Menu</button>
+        </div>
+    </div>
+</body>
+</html>
