@@ -122,3 +122,125 @@ function nextSong() {
         loadSong(gameState.currentSongIndex);
     }
 }
+function useHint() {
+    if (gameState.hintsRemaining <= 0) {
+        return null;
+    }
+    
+    gameState.hintsRemaining--;
+    gameState.hintsUsed++;
+    gameState.hintUsedOnCurrentBlank = true;
+    
+    gameState.score -= 25;
+    
+    const currentSong = gameState.songs[gameState.currentSongIndex];
+    const blanks = currentSong.lyrics.filter(line => line.blank);
+    const currentBlank = blanks[gameState.currentBlankIndex];
+    
+    const hintType = gameState.hintsUsed === 1 ? 'firstLetter' : 'removeWrong';
+    
+    return {
+        type: hintType,
+        correctAnswer: currentBlank.correctAnswer,
+        options: currentBlank.options
+    };
+}
+
+function skipSong() {
+    if (gameState.skipsRemaining <= 0) {
+        return false;
+    }
+    
+    gameState.skipsRemaining--;
+    gameState.skipsUsed++;
+    
+    gameState.score -= 100;
+    
+    nextSong();
+    
+    return true;
+}
+
+function endGame() {
+    const modeUnlocked = checkModeUnlock();
+    
+    const finalStats = {
+        score: gameState.score,
+        accuracy: Math.round((gameState.correctAnswers / gameState.totalBlanks) * 100),
+        hintsUsed: gameState.hintsUsed,
+        skipsUsed: gameState.skipsUsed,
+        modeUnlocked: modeUnlocked
+    };
+    
+    return finalStats;
+}
+
+function checkModeUnlock() {
+    let unlocked = null;
+    
+    if (gameState.currentMode === 5 && !gameState.unlockedModes.mode7) {
+        gameState.unlockedModes.mode7 = true;
+        unlocked = 7;
+    } else if (gameState.currentMode === 7 && !gameState.unlockedModes.mode9) {
+        gameState.unlockedModes.mode9 = true;
+        unlocked = 9;
+    }
+    
+    if (unlocked) {
+        saveProgress();
+    }
+    
+    return unlocked;
+}
+
+function getCurrentSong() {
+    return gameState.songs[gameState.currentSongIndex];
+}
+
+function getCurrentBlank() {
+    const song = getCurrentSong();
+    const blanks = song.lyrics.filter(line => line.blank);
+    return blanks[gameState.currentBlankIndex];
+}
+
+function getProgress() {
+    return {
+        currentSong: gameState.currentSongIndex + 1,
+        totalSongs: gameState.songs.length,
+        percentage: ((gameState.currentSongIndex + 1) / gameState.songs.length) * 100
+    };
+}
+
+function resetAllProgress() {
+    if (confirm('Are you sure you want to reset ALL progress? This cannot be undone!')) {
+        gameState.unlockedModes = {
+            mode5: true,
+            mode7: false,
+            mode9: false
+        };
+        saveProgress();
+        return true;
+    }
+    return false;
+}
+
+function playSound(soundType) {
+    if (!settings.soundEnabled) return;
+}
+
+function handleKeyboardInput(key) {
+    if (key >= '1' && key <= '4') {
+        const choiceIndex = parseInt(key) - 1;
+        return { action: 'selectChoice', index: choiceIndex };
+    }
+    
+    if (key.toLowerCase() === 'h') {
+        return { action: 'useHint' };
+    }
+    
+    if (key.toLowerCase() === 's') {
+        return { action: 'skipSong' };
+    }
+    
+    return null;
+}
