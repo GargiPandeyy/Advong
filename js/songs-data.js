@@ -272,9 +272,15 @@ function getSongsForMode(mode) {
         return shuffled;
     };
     
-    selectedSongs.push(...shuffleArray(easySongs).slice(0, easyCount));
-    selectedSongs.push(...shuffleArray(mediumSongs).slice(0, mediumCount));
-    selectedSongs.push(...shuffleArray(hardSongs).slice(0, hardCount));
+    const availableEasy = Math.min(easyCount, easySongs.length);
+    const availableMedium = Math.min(mediumCount, mediumSongs.length);
+    const availableHard = Math.min(hardCount, hardSongs.length);
+    
+    selectedSongs.push(...shuffleArray(easySongs).slice(0, availableEasy));
+    selectedSongs.push(...shuffleArray(mediumSongs).slice(0, availableMedium));
+    selectedSongs.push(...shuffleArray(hardSongs).slice(0, availableHard));
+    
+    console.log(`Selected ${selectedSongs.length} songs (${availableEasy} easy, ${availableMedium} medium, ${availableHard} hard)`);
     
     return shuffleArray(selectedSongs);
 }
