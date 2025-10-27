@@ -8,3 +8,37 @@
 </head>
 <body>
     <div class="background-animation"></div>
+    <div id="main-menu" class="screen active">
+        <div class="game-container">
+            <h1 class="game-title">ADVONG</h1>
+            <p class="game-subtitle">Save the Songiverse, Lyrocix!</p>
+            
+            <div class="mode-selection">
+                <h2>Choose Your Mission</h2>
+                <div class="mode-buttons">
+                    <button class="mode-btn" data-mode="5" data-unlocked="true">
+                        <span class="mode-number">5</span>
+                        <span class="mode-text">Songs</span>
+                        <span class="mode-difficulty">Easy Vibes</span>
+                    </button>
+                    <button class="mode-btn locked" data-mode="7" data-unlocked="false">
+                        <span class="mode-number">7</span>
+                        <span class="mode-text">Songs</span>
+                        <span class="mode-difficulty">Medium Beats</span>
+                        <span class="lock-icon">🔒</span>
+                    </button>
+                    <button class="mode-btn locked" data-mode="9" data-unlocked="false">
+                        <span class="mode-number">9</span>
+                        <span class="mode-text">Songs</span>
+                        <span class="mode-difficulty">Hard Mode</span>
+                        <span class="lock-icon">🔒</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="menu-footer">
+                <button id="settings-btn" class="secondary-btn">⚙️ Settings</button>
+                <button id="how-to-play-btn" class="secondary-btn">❓ How to Play</button>
+            </div>
+        </div>
+    </div>
