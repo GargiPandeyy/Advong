@@ -22,3 +22,35 @@ function initGame() {
     loadProgress();
     loadSettings();
 }
+function loadProgress() {
+    const savedProgress = localStorage.getItem('advong_progress');
+    
+    if (savedProgress) {
+        gameState.unlockedModes = JSON.parse(savedProgress);
+    } else {
+        gameState.unlockedModes = {
+            mode5: true,
+            mode7: false,
+            mode9: false
+        };
+        saveProgress();
+    }
+}
+
+function saveProgress() {
+    localStorage.setItem('advong_progress', JSON.stringify(gameState.unlockedModes));
+}
+
+function loadSettings() {
+    const savedSettings = localStorage.getItem('advong_settings');
+    
+    if (savedSettings) {
+        const loaded = JSON.parse(savedSettings);
+        settings.soundEnabled = loaded.soundEnabled;
+        settings.musicEnabled = loaded.musicEnabled;
+    }
+}
+
+function saveSettings() {
+    localStorage.setItem('advong_settings', JSON.stringify(settings));
+}
