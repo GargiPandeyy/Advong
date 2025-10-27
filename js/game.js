@@ -55,8 +55,13 @@ function saveSettings() {
     localStorage.setItem('advong_settings', JSON.stringify(settings));
 }
 function startGame(mode) {
+    console.log(`Starting game with mode: ${mode}`);
+    
     gameState.currentMode = mode;
     gameState.songs = getSongsForMode(mode);
+    
+    console.log(`Selected ${gameState.songs.length} songs:`, gameState.songs.map(s => s.title));
+    
     gameState.currentSongIndex = 0;
     gameState.currentBlankIndex = 0;
     gameState.score = 0;
@@ -71,6 +76,9 @@ function startGame(mode) {
         return total + song.lyrics.filter(line => line.blank).length;
     }, 0);
     
+    console.log(`Total blanks in game: ${gameState.totalBlanks}`);
+    console.log(`Loading first song...`);
+    
     loadSong(0);
 }
 
@@ -84,6 +92,9 @@ function checkAnswer(selectedAnswer) {
     const currentSong = gameState.songs[gameState.currentSongIndex];
     const blanks = currentSong.lyrics.filter(line => line.blank);
     const currentBlank = blanks[gameState.currentBlankIndex];
+    
+    console.log(`Checking answer: ${selectedAnswer} for song "${currentSong.title}"`);
+    console.log(`Current blank index: ${gameState.currentBlankIndex}, Total blanks in song: ${blanks.length}`);
     
     const isCorrect = selectedAnswer === currentBlank.correctAnswer;
     
@@ -101,7 +112,10 @@ function checkAnswer(selectedAnswer) {
         gameState.currentBlankIndex++;
         gameState.hintUsedOnCurrentBlank = false;
         
+        console.log(`Correct! Moving to blank ${gameState.currentBlankIndex} of ${blanks.length}`);
+        
         if (gameState.currentBlankIndex >= blanks.length) {
+            console.log('All blanks filled in this song, moving to next song in 1 second...');
             setTimeout(() => {
                 nextSong();
             }, 1000);
@@ -109,6 +123,7 @@ function checkAnswer(selectedAnswer) {
         
         return true;
     } else {
+        console.log('Wrong answer');
         return false;
     }
 }
@@ -116,9 +131,13 @@ function checkAnswer(selectedAnswer) {
 function nextSong() {
     gameState.currentSongIndex++;
     
+    console.log(`Moving to song ${gameState.currentSongIndex + 1} of ${gameState.songs.length}`);
+    
     if (gameState.currentSongIndex >= gameState.songs.length) {
+        console.log('Game complete! Calling endGame()');
         endGame();
     } else {
+        console.log(`Loading song ${gameState.currentSongIndex}`);
         loadSong(gameState.currentSongIndex);
         renderGameScreen();
     }
