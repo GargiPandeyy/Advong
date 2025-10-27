@@ -54,3 +54,71 @@ function loadSettings() {
 function saveSettings() {
     localStorage.setItem('advong_settings', JSON.stringify(settings));
 }
+function startGame(mode) {
+    gameState.currentMode = mode;
+    gameState.songs = getSongsForMode(mode);
+    gameState.currentSongIndex = 0;
+    gameState.currentBlankIndex = 0;
+    gameState.score = 0;
+    gameState.hintsRemaining = 2;
+    gameState.skipsRemaining = 1;
+    gameState.hintsUsed = 0;
+    gameState.skipsUsed = 0;
+    gameState.correctAnswers = 0;
+    gameState.hintUsedOnCurrentBlank = false;
+    
+    gameState.totalBlanks = gameState.songs.reduce((total, song) => {
+        return total + song.lyrics.filter(line => line.blank).length;
+    }, 0);
+    
+    loadSong(0);
+}
+
+function loadSong(songIndex) {
+    gameState.currentSongIndex = songIndex;
+    gameState.currentBlankIndex = 0;
+    gameState.hintUsedOnCurrentBlank = false;
+}
+
+function checkAnswer(selectedAnswer) {
+    const currentSong = gameState.songs[gameState.currentSongIndex];
+    const blanks = currentSong.lyrics.filter(line => line.blank);
+    const currentBlank = blanks[gameState.currentBlankIndex];
+    
+    const isCorrect = selectedAnswer === currentBlank.correctAnswer;
+    
+    if (isCorrect) {
+        gameState.correctAnswers++;
+        
+        let points = 100;
+        
+        if (!gameState.hintUsedOnCurrentBlank) {
+            points += 50;
+        }
+        
+        gameState.score += points;
+        
+        gameState.currentBlankIndex++;
+        gameState.hintUsedOnCurrentBlank = false;
+        
+        if (gameState.currentBlankIndex >= blanks.length) {
+            setTimeout(() => {
+                nextSong();
+            }, 1000);
+        }
+        
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function nextSong() {
+    gameState.currentSongIndex++;
+    
+    if (gameState.currentSongIndex >= gameState.songs.length) {
+        endGame();
+    } else {
+        loadSong(gameState.currentSongIndex);
+    }
+}
