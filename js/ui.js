@@ -91,11 +91,6 @@ function renderLyrics() {
     
     if (currentBlank) {
         renderChoices(currentBlank);
-    } else if (gameState.currentBlankIndex >= blanks.length && gameState.currentSongIndex < gameState.songs.length - 1) {
-        setTimeout(() => {
-            nextSong();
-            renderGameScreen();
-        }, 1000);
     }
 }
 
