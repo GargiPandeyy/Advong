@@ -236,6 +236,105 @@ const SONGS_DATABASE = [
             { text: "That's that", blank: true, correctAnswer: "shit", options: ["shit", "hit", "bit", "kit"] },
             { text: "I don't get", blank: true, correctAnswer: "worried", options: ["worried", "hurried", "married", "carried"] }
         ]
+    },
+    {
+        id: 16,
+        title: "Circles",
+        artist: "Post Malone",
+        difficulty: "medium",
+        blanksCount: 3,
+        lyrics: [
+            { text: "We couldn't turn around 'til we were upside", blank: true, correctAnswer: "down", options: ["down", "around", "found", "bound"] },
+            { text: "I'll be the bad guy now, but know I ain't too", blank: true, correctAnswer: "proud", options: ["proud", "loud", "allowed", "crowd"] },
+            { text: "I couldn't be there even when I", blank: true, correctAnswer: "tried", options: ["tried", "cried", "lied", "died"] }
+        ]
+    },
+    {
+        id: 17,
+        title: "Memories",
+        artist: "Maroon 5",
+        difficulty: "easy",
+        blanksCount: 2,
+        lyrics: [
+            { text: "Here's to the ones that we", blank: true, correctAnswer: "got", options: ["got", "lost", "loved", "know"] },
+            { text: "Cheers to the wish you were here, but you're not" },
+            { text: "'Cause the drinks bring back all the", blank: true, correctAnswer: "memories", options: ["memories", "enemies", "remedies", "centuries"] }
+        ]
+    },
+    {
+        id: 18,
+        title: "Dynamite",
+        artist: "BTS",
+        difficulty: "medium",
+        blanksCount: 4,
+        lyrics: [
+            { text: "'Cause I, I, I'm in the", blank: true, correctAnswer: "stars", options: ["stars", "bars", "cars", "mars"] },
+            { text: "tonight" },
+            { text: "So watch me bring the", blank: true, correctAnswer: "fire", options: ["fire", "wire", "higher", "liar"] },
+            { text: "and set the night", blank: true, correctAnswer: "alight", options: ["alight", "alright", "upright", "delight"] },
+            { text: "Shining through the city with a little funk and", blank: true, correctAnswer: "soul", options: ["soul", "goal", "roll", "bowl"] }
+        ]
+    },
+    {
+        id: 19,
+        title: "Watermelon Sugar",
+        artist: "Harry Styles",
+        difficulty: "easy",
+        blanksCount: 1,
+        lyrics: [
+            { text: "Tastes like strawberries on a summer evening" },
+            { text: "And it sounds just like a", blank: true, correctAnswer: "song", options: ["song", "dream", "breeze", "kiss"] },
+            { text: "I want more berries and that summer feeling" }
+        ]
+    },
+    {
+        id: 20,
+        title: "Good 4 U",
+        artist: "Olivia Rodrigo",
+        difficulty: "medium",
+        blanksCount: 5,
+        lyrics: [
+            { text: "Well, good for you, I guess you moved", blank: true, correctAnswer: "on", options: ["on", "out", "up", "away"] },
+            { text: "really easily" },
+            { text: "You found a new", blank: true, correctAnswer: "girl", options: ["girl", "world", "pearl", "swirl"] },
+            { text: "and it only took a couple", blank: true, correctAnswer: "weeks", options: ["weeks", "days", "months", "years"] },
+            { text: "Remember when you said that you wanted to give me the", blank: true, correctAnswer: "world", options: ["world", "girl", "pearl", "swirl"] },
+            { text: "And good for you, I guess that you've been working on", blank: true, correctAnswer: "yourself", options: ["yourself", "myself", "itself", "himself"] }
+        ]
+    },
+    {
+        id: 21,
+        title: "Senorita",
+        artist: "Shawn Mendes & Camila Cabello",
+        difficulty: "hard",
+        blanksCount: 6,
+        lyrics: [
+            { text: "I love it when you call me", blank: true, correctAnswer: "señorita", options: ["señorita", "my baby", "bonita", "chiquita"] },
+            { text: "I wish I could pretend I didn't", blank: true, correctAnswer: "need", options: ["need", "feel", "want", "love"] },
+            { text: "ya" },
+            { text: "But every touch is ooh la la la" },
+            { text: "It's true, la la", blank: true, correctAnswer: "la", options: ["la", "da", "na", "ma"] },
+            { text: "Ooh, I should be", blank: true, correctAnswer: "running", options: ["running", "coming", "walking", "jumping"] },
+            { text: "Ooh, you keep me", blank: true, correctAnswer: "coming", options: ["coming", "running", "humming", "drumming"] },
+            { text: "for", blank: true, correctAnswer: "ya", options: ["ya", "me", "us", "her"] }
+        ]
+    },
+    {
+        id: 22,
+        title: "Without Me",
+        artist: "Halsey",
+        difficulty: "hard",
+        blanksCount: 7,
+        lyrics: [
+            { text: "Found you when your heart was", blank: true, correctAnswer: "broke", options: ["broke", "cold", "lost", "old"] },
+            { text: "I filled your cup until it", blank: true, correctAnswer: "overflowed", options: ["overflowed", "exploded", "corroded", "unloaded"] },
+            { text: "Took it so far to keep you", blank: true, correctAnswer: "close", options: ["close", "home", "whole", "known"] },
+            { text: "I was afraid to leave you on your", blank: true, correctAnswer: "own", options: ["own", "phone", "zone", "bone"] },
+            { text: "I said I'd catch you if you", blank: true, correctAnswer: "fall", options: ["fall", "call", "crawl", "stall"] },
+            { text: "And if they laugh, then", blank: true, correctAnswer: "forget", options: ["forget", "regret", "upset", "outlet"] },
+            { text: "'em all" },
+            { text: "And then I got you off your", blank: true, correctAnswer: "knees", options: ["knees", "feet", "seat", "beat"] }
+        ]
     }
 ];
 
