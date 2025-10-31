@@ -25,16 +25,14 @@ Music adventure game where you fill in missing lyrics to save the Songiverse.
 - Using hint: -25 points
 - Using skip: -100 points
 
-## Keyboard Shortcuts
 
-- 1-4: Select answer choice
-- H: Use hint
-- S: Skip song
+I made this using html, css and javascript. Javascript is cwazy!! 
 
-## Adding Songs
+Building this game was way harder than I thought! The biggest struggle was managing complex game state - tracking current songs, blank positions, scores, and hints while keeping everything synchronized. Learning localStorage for saving progress was tricky, especially handling JSON parsing and edge cases. 
+The dynamic DOM manipulation was intense - creating buttons dynamically, implementing hint systems that reveal letters or remove wrong answers, and smoothly transitioning between multiple screens. 
 
-Edit `js/songs-data.js` to add more songs. Structure includes:
-- Song title and artist
-- Difficulty level
-- Lyrics with blanks marked
-- Multiple choice options
+I spent hours debugging state management issues and learning to filter songs by difficulty while preventing duplicates across game modes. Implementing the Fisher-Yates shuffle algorithm and coordinating event listeners for keyboard shortcuts taught me how complex web apps actually work - it's way more than just HTML and CSS!
+
+Cwazyyy!!
+
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
